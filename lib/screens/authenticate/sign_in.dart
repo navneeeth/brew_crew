@@ -30,7 +30,8 @@ final AuthService _auth = AuthService();
               print('Error signing in.');
             }
             else {
-              print('Signed in. \n $result');
+              print('Signed in.');
+              print(result.uid);
             }
           },
         ),
