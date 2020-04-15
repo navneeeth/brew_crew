@@ -2,12 +2,11 @@ import 'package:brew_crew/services/auth.dart';
 import 'package:brew_crew/shared/constants.dart';
 import 'package:brew_crew/shared/loading.dart';
 import 'package:flutter/material.dart';
-import 'package:brew_crew/services/auth.dart';
 
 class SignIn extends StatefulWidget {
 
   final Function toggleView;
-  SignIn({this.toggleView});
+  SignIn({ this.toggleView });
 
   @override
   _SignInState createState() => _SignInState();
@@ -72,7 +71,7 @@ String error = '';
                   'Sign In',
                   style: TextStyle(
                     color: Colors.white,
-                  ),
+                    ),
                   ),
                 onPressed: () async {
                   if (_formKey.currentState.validate())

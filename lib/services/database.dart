@@ -1,7 +1,7 @@
 import 'package:brew_crew/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:brew_crew/models/brew.dart';
-import 'package:brew_crew/models/user.dart';
+
 
 class DatabaseService {
 
@@ -12,7 +12,7 @@ class DatabaseService {
   // collection reference
   final CollectionReference brewCollection = Firestore.instance.collection('brews');
 
-  Future updateUserData(String sugars, String name, int strength) async {
+  Future<void> updateUserData(String sugars, String name, int strength) async {
     return await brewCollection.document(uid).setData({
       'sugars': sugars,
       'name': name,

@@ -14,6 +14,7 @@ class _SettingsFormState extends State<SettingsForm> {
   
   final _formKey = GlobalKey<FormState>();
   final List<String> sugars = ['0', '1', '2', '3', '4'];
+  final List<int> strengths = [100, 200, 300, 400, 500, 600, 700, 800, 900];
 
   //form values
   String _currentName;
@@ -42,7 +43,7 @@ class _SettingsFormState extends State<SettingsForm> {
                 SizedBox(height: 20.0),
                 TextFormField(
                   initialValue: userData.name,
-                  decoration: textInputDecoration,
+                  decoration: textInputDecoration.copyWith(hintText: 'Name'),
                   validator: (val) => val.isEmpty ? 'Please enter a name' : null,
                   onChanged: (val) => setState(() => _currentName = val),
                 ),
@@ -76,9 +77,14 @@ class _SettingsFormState extends State<SettingsForm> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
-                    print(_currentName);
-                    print(_currentSugars);
-                    print(_currentStrength);
+                   if(_formKey.currentState.validate()) {
+                     await DatabaseService(uid: user.uid).updateUserData(
+                       _currentSugars ?? snapshot.data.sugars,
+                       _currentName ?? snapshot.data.name,
+                       _currentStrength ?? snapshot.data.strength,
+                     );
+                     Navigator.pop(context);
+                   }
                   },
                 ),
               ],
